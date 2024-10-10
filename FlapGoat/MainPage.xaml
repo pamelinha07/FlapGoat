@@ -1,19 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlapGoat.MainPage">
-<Grid>
-   <Image Source="fundo.jpg"
-        Aspect="AspectFill"/>
-    <Image Source="pixel_art_cabra.png"
-           HeightRequest="50"
-           WidthRequest="50"/>
-    <Image Source="tronco_cima.png"/>
-    <Image Source="tronco_baixo.png"/>
-    <Image Source="chao.jpg"
-           VerticalOptions="EndAndExpand"/>
-           HeightRequest=""
+             x:Class="FlapGoat.MainPage"
+             Shell.NavBarIsVisible="False">
+       <Grid>
+              <Image Source="fundo.jpg"
+                     Aspect="Fill"/>
+              <Image Source="pixel_art_cabra.png"
+                     HeightRequest="60"
+                     WidthRequest="60"
+                     x:Name="imgPersonagem"/>
+              <Image Source="tronco_cima.png"
+                     VerticalOptions="Start"
+                     HorizontalOptions="End"
+                     HeightRequest="350"/>
+              <Image Source="tronco_baixo.png"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     HeightRequest="350"/>
+              <Image Source="chao.jpg"
+                     VerticalOptions="End"
+                     HorizontalOptions="Fill"/>
+              <Frame IsVisible="true"
+                     x:Name="frameGameOver"
+                     BackgroundColor="Transparent">
+                     <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGameOverCliked"/>
+                     </Frame.GestureRecognizers>
+                     <Image Source="gameover.png"/>
+              </Frame>
 
-</Grid>
+
+       </Grid>
 
 </ContentPage>

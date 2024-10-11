@@ -13,11 +13,13 @@
               <Image Source="tronco_cima.png"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
-                     HeightRequest="350"/>
+                     HeightRequest="300"
+                     x:Name="imgTroncoCima"/>
               <Image Source="tronco_baixo.png"
                      VerticalOptions="End"
                      HorizontalOptions="End"
-                     HeightRequest="350"/>
+                     HeightRequest="300"
+                     x:Name="imgTroncoBaixo"/>
               <Image Source="chao.jpg"
                      VerticalOptions="End"
                      HorizontalOptions="Fill"/>

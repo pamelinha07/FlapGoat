@@ -16,7 +16,6 @@ public partial class MainPage : ContentPage
 	void AplicaGravidade()
 	{
 		imgPersonagem.TranslationY += gravidade;
-		
 	}
 
 
@@ -25,9 +24,15 @@ public partial class MainPage : ContentPage
 		while (!estaMorto)
 		{
 			AplicaGravidade();
-			await Task.Delay(tempoEntreFrames);
 			GerenciaCanos();
-		}
+			if (VerificaColisao())
+			{
+				estaMorto = true;
+				frameGameOver.IsVisible = true;
+				break;
+			}
+			await Task.Delay(tempoEntreFrames);
+		}     
 	}
 
 	void OnGameOverCliked(object s, TappedEventArgs e)
@@ -58,6 +63,34 @@ public partial class MainPage : ContentPage
 
 		}
 	}
+	bool VerificaColisao()
+	{
+		if(!estaMorto)
+		{	
+			if (VerificaColisaoTeto () || VerificaColisaoChao () )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool VerificaColisaoTeto()
+	{
+		var minY =- alturaJanela/2;
+		if (imgPersonagem.TranslationY <= minY)
+		    return true;
+		 else
+		    return false;
+	}
+	 bool VerificaColisaoChao()
+	 {
+		var maxY = alturaJanela/2 - imgChao.HeightRequest;
+		if (imgPersonagem.TranslationY >= maxY)
+		    return true;
+		else
+		   return false;	
+	 }
 
 
 

@@ -4,6 +4,11 @@ public partial class MainPage : ContentPage
 {
 	const int gravidade = 3;
 	const int tempoEntreFrames = 25;
+	const int forcaPulo = 30;
+	const int maxTempoPulando = 3; //frames
+	const int aberturaMinima = 100;
+	bool estaPulando = false;
+	int tempoPulando = 0;
 	bool estaMorto = true;
 	double larguraJanela = 0;
 	double alturaJanela = 0;
@@ -31,6 +36,11 @@ public partial class MainPage : ContentPage
 				frameGameOver.IsVisible = true;
 				break;
 			}
+			if (estaPulando)
+			   AplicaPulo();
+			else
+			   AplicaGravidade();
+			
 			await Task.Delay(tempoEntreFrames);
 		}     
 	}
@@ -60,8 +70,26 @@ public partial class MainPage : ContentPage
 		{
 			imgTroncoBaixo.TranslationX = 0 ;
 			imgTroncoCima.TranslationX = 0 ;
+			 var alturaMax = -100;
+			 var alturaMin = -imgTroncoBaixo.HeightRequest;
+			 imgTroncoCima.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
+			 imgTroncoBaixo.TranslationY=imgTroncoCima.TranslationY+aberturaMinima+imgTroncoBaixo.HeightRequest;
 
 		}
+	}
+	void AplicaPulo()
+	{
+		imgPersonagem.TranslationY -= forcaPulo;
+		tempoPulando++ ;
+		if (tempoPulando >= maxTempoPulando)
+		{
+			estaPulando = false;
+			tempoPulando = 0;
+		}
+	}
+	void OnGridCliked(object s, TappedEventArgs a)
+	{
+		estaPulando = true;
 	}
 	bool VerificaColisao()
 	{

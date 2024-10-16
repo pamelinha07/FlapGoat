@@ -7,6 +7,10 @@
 
        <Grid>
 
+       <Grid.GestureRecognizers>
+       <TapGestureRecognizer Tapped ="OnGridCliked"/>
+       </Grid.GestureRecognizers>
+
               <Image Source="fundo.jpg"
                      Aspect="Fill"/>
 
@@ -39,9 +43,7 @@
                      BackgroundColor="Transparent">
 
                      <Frame.GestureRecognizers>
-
                             <TapGestureRecognizer Tapped="OnGameOverCliked"/>
-
                      </Frame.GestureRecognizers>
 
                      <Image Source="gameover.png"/>

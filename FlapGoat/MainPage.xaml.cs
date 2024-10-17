@@ -13,6 +13,7 @@ public partial class MainPage : ContentPage
 	double larguraJanela = 0;
 	double alturaJanela = 0;
 	int velocidade = 15;
+	int score = 0;
 
 	public MainPage()
 	{
@@ -34,6 +35,7 @@ public partial class MainPage : ContentPage
 			{
 				estaMorto = true;
 				frameGameOver.IsVisible = true;
+				labelGameOver.Text="Você passou \n por "+ score + " \n Troncos";
 				break;
 			}
 			if (estaPulando)
@@ -55,6 +57,7 @@ public partial class MainPage : ContentPage
 	{
 		estaMorto = false;
 		imgPersonagem.TranslationY = 0;
+		score = 0;
 	}
 	protected override void OnSizeAllocated(double w, double h)
 	{
@@ -74,6 +77,8 @@ public partial class MainPage : ContentPage
 			 var alturaMin = -imgTroncoBaixo.HeightRequest;
 			 imgTroncoCima.TranslationY = Random.Shared.Next((int)alturaMin, (int)alturaMax);
 			 imgTroncoBaixo.TranslationY=imgTroncoCima.TranslationY+aberturaMinima+imgTroncoBaixo.HeightRequest;
+			 score ++;
+			 labelScore.Text = "Canos: " + score.ToString ("D3");
 
 		}
 	}

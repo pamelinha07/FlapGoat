@@ -22,13 +22,13 @@
               <Image Source="tronco_cima.png"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
-                     HeightRequest="300"
+                     HeightRequest="650"
                      x:Name="imgTroncoCima"/>
 
               <Image Source="tronco_baixo.png"
                      VerticalOptions="End"
                      HorizontalOptions="End"
-                     HeightRequest="300"
+                     HeightRequest="650"
                      x:Name="imgTroncoBaixo"/>
 
               <Image Source="chao.jpg"
@@ -38,15 +38,28 @@
                      HeightRequest="70"
                      x:Name="imgChao"/>
 
+              <Label Text="Canos: "
+              x:Name="labelScore"
+              FontSize="30"
+              Margin="20, 10"/>
+
               <Frame IsVisible="true"
                      x:Name="frameGameOver"
-                     BackgroundColor="Transparent">
-
+                     VerticalOptions="Center"
+                     BackgroundColor="Transparent"
+                     BorderColor="Transparent">
                      <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnGameOverCliked"/>
                      </Frame.GestureRecognizers>
-
-                     <Image Source="gameover.png"/>
+                     <VerticalStackLayout>
+                            <Image Source="gameover.png"
+                            HeightRequest="300"/>
+                            <Label Text="Você passou por 0 troncos"
+                                   FontSize="20"
+                                   x:Name="labelGameOver"
+                                   HorizontalOptions="Center"
+                                   Margin="10"/>
+                    </VerticalStackLayout>
 
               </Frame>
 

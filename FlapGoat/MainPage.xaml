@@ -17,19 +17,24 @@
               <Image Source="pixel_art_cabra.png"
                      HeightRequest="60"
                      WidthRequest="60"
+                     HorizontalOptions="Center"
                      x:Name="imgPersonagem"/>
 
               <Image Source="tronco_cima.png"
                      VerticalOptions="Start"
                      HorizontalOptions="End"
-                     HeightRequest="650"
-                     x:Name="imgTroncoCima"/>
+                     HeightRequest="620"
+                     WidthRequest="50"
+                     x:Name="imgTroncoCima"
+                     BackgroundColor="Black"/>
 
               <Image Source="tronco_baixo.png"
                      VerticalOptions="End"
                      HorizontalOptions="End"
-                     HeightRequest="650"
-                     x:Name="imgTroncoBaixo"/>
+                     HeightRequest="620"
+                     WidthRequest="50"
+                     x:Name="imgTroncoBaixo"
+                     BackgroundColor="Red"/>
 
               <Image Source="chao.jpg"
                      VerticalOptions="End"

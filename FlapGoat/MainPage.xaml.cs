@@ -85,6 +85,9 @@ public partial class MainPage : ContentPage
 			 imgTroncoBaixo.TranslationY=imgTroncoCima.TranslationY+aberturaMinima+imgTroncoBaixo.HeightRequest;
 			 score ++;
 			 labelScore.Text = "Canos: " + score.ToString ("D3");
+			 score++;
+			 if (score % 2 == 0)
+			 velocidade++;
 
 		}
 	}
@@ -106,16 +109,10 @@ public partial class MainPage : ContentPage
 	{
 		if(!estaMorto)
 		{	
-			if (VerificaColisaoTeto () || VerificaColisaoChao () || VerificaColisaoCanoCima() ||  VerificaColisaoCanoBaixo())
-			{
-				return true;
-			}
-				else
-				{
-					return false;
-				}
+			return (VerificaColisaoTeto () || VerificaColisaoChao () || VerificaColisaoCanoCima() ||  VerificaColisaoCanoBaixo());
+		}		
+					return false;	
 		}
-		return false;
 	}
 
 	bool VerificaColisaoTeto()
@@ -149,17 +146,19 @@ public partial class MainPage : ContentPage
 			}
  	 }
  bool VerificaColisaoCanoBaixo()
-	 {
-		var posHCabrito = (larguraJanela / 2) - (imgPersonagem.WidthRequest / 2 );
-		var posVCabrito = (alturaJanela / 2) - (imgPersonagem.HeightRequest / 2) + imgPersonagem.TranslationY;
-		if (posHCabrito >= Math.Abs(imgTroncoBaixo.TranslationX) - imgTroncoBaixo.WidthRequest && posHCabrito <= Math.Abs(imgTroncoBaixo.TranslationX) + imgTroncoBaixo.WidthRequest && posVCabrito <= imgTroncoBaixo.HeightRequest + imgTroncoBaixo.TranslationY)
-			{
+	{
+		var posVCabrito = (larguraJanela/2) - (imgPersonagem.WidthRequest/2);
+		var posHCabrito = (alturaJanela/2) + (imgPersonagem.HeightRequest/2) + imgPersonagem.TranslationY;
+		var yMaxTronco = imgTroncoCima.HeightRequest + imgTroncoCima.TranslationY + aberturaMinima;
+		if (posHCabrito >= Math.Abs (imgTroncoBaixo.TranslationX) - imgTroncoBaixo.WidthRequest && 
+		posHCabrito <= Math.abs (imgTroncoBaixo.TranslationX) + imgTroncoBaixo.WidthRequest &&
+		posVCabrito >=yMaxTronco)
+		{
 			return true;
-			}
-			else
-			{
-			
+		}
+		else
+		{
 			return false;
-			}
- 	 } 
-}
+		}
+
+	}

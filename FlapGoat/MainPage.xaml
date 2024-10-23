@@ -26,15 +26,14 @@
                      HeightRequest="620"
                      WidthRequest="50"
                      x:Name="imgTroncoCima"
-                     BackgroundColor="Black"/>
+                     />
 
               <Image Source="tronco_baixo.png"
                      VerticalOptions="End"
                      HorizontalOptions="End"
                      HeightRequest="620"
                      WidthRequest="50"
-                     x:Name="imgTroncoBaixo"
-                     BackgroundColor="Red"/>
+                     x:Name="imgTroncoBaixo"/>
 
               <Image Source="chao.jpg"
                      VerticalOptions="End"

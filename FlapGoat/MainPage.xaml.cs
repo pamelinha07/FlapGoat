@@ -1,4 +1,6 @@
-﻿namespace FlapGoat;
+﻿using Plugin.Maui.Audio;
+
+namespace FlapGoat;
 
 public partial class MainPage : ContentPage
 {
@@ -12,7 +14,7 @@ public partial class MainPage : ContentPage
 	bool estaMorto = true;
 	double larguraJanela = 0;
 	double alturaJanela = 0;
-	int velocidade = 15;
+	int velocidade = 10;
 	int score = 0;
 
 	public MainPage()
@@ -29,8 +31,13 @@ public partial class MainPage : ContentPage
 	{
 		while (!estaMorto)
 		{
-			AplicaGravidade();
+			if(estaPulando)
+				AplicaPulo();
+			else 
+				AplicaGravidade();
+
 			GerenciaCanos();
+
 			if (VerificaColisao())
 			{
 				estaMorto = true;
@@ -63,6 +70,7 @@ public partial class MainPage : ContentPage
 		imgPersonagem.TranslationX = 0;
 		imgPersonagem.TranslationY = 0;
 		score = 0;
+		velocidade = 5;
 		GerenciaCanos();
 	}
 	protected override void OnSizeAllocated(double w, double h)
@@ -109,10 +117,12 @@ public partial class MainPage : ContentPage
 	{
 		if(!estaMorto)
 		{	
-			return (VerificaColisaoTeto () || VerificaColisaoChao () || VerificaColisaoCanoCima() ||  VerificaColisaoCanoBaixo());
+			if(VerificaColisaoTeto () || VerificaColisaoChao () || VerificaColisaoCanoCima() ||  VerificaColisaoCanoBaixo())
+			{
+				return true;
+			}
 		}		
-					return false;	
-		}
+		return false;	
 	}
 
 	bool VerificaColisaoTeto()
@@ -120,7 +130,7 @@ public partial class MainPage : ContentPage
 		var minY =- alturaJanela/2;
 		if (imgPersonagem.TranslationY <= minY)
 		    return true;
-		 else
+		else
 		    return false;
 	}
 	 bool VerificaColisaoChao()
@@ -131,28 +141,30 @@ public partial class MainPage : ContentPage
 		else
 		   return false;	
 	 }
+
 	 bool VerificaColisaoCanoCima()
 	 {
-		var posHCabrito = (larguraJanela / 2) - (imgPersonagem.WidthRequest / 2 );
-		var posVCabrito = (alturaJanela / 2) - (imgPersonagem.HeightRequest / 2) + imgPersonagem.TranslationY;
-		if (posHCabrito >= Math.Abs(imgTroncoCima.TranslationX) - imgTroncoCima.WidthRequest && posHCabrito <= Math.Abs(imgTroncoCima.TranslationX) + imgTroncoCima.WidthRequest && posVCabrito <= imgTroncoCima.HeightRequest + imgTroncoCima.TranslationY)
-			{
-			return true;
-			}
-			else
-			{
-			
-			return false;
-			}
+		var posicaoHorizontalPardal = (larguraJanela - 50) - (imgPersonagem.WidthRequest / 2);
+    var posicaoVerticalPardal   = (alturaJanela / 2) - (imgPersonagem.HeightRequest / 2) + imgPersonagem.TranslationY;
+
+    if (
+         posicaoHorizontalPardal >= Math.Abs(imgTroncoCima.TranslationX) - imgTroncoCima.WidthRequest &&
+         posicaoHorizontalPardal <= Math.Abs(imgTroncoCima.TranslationX) + imgTroncoCima.WidthRequest &&
+         posicaoVerticalPardal   <= imgTroncoCima.HeightRequest + imgTroncoCima.TranslationY
+       )
+      return true;
+    else
+      return false;
  	 }
- bool VerificaColisaoCanoBaixo()
+
+ 	bool VerificaColisaoCanoBaixo()
 	{
-		var posVCabrito = (larguraJanela/2) - (imgPersonagem.WidthRequest/2);
-		var posHCabrito = (alturaJanela/2) + (imgPersonagem.HeightRequest/2) + imgPersonagem.TranslationY;
+		var posHCabrito = (larguraJanela/2) - (imgPersonagem.WidthRequest/2);
+		var posVCabrito = (alturaJanela/2) + (imgPersonagem.HeightRequest/2) + imgPersonagem.TranslationY;
 		var yMaxTronco = imgTroncoCima.HeightRequest + imgTroncoCima.TranslationY + aberturaMinima;
-		if (posHCabrito >= Math.Abs (imgTroncoBaixo.TranslationX) - imgTroncoBaixo.WidthRequest && 
-		posHCabrito <= Math.abs (imgTroncoBaixo.TranslationX) + imgTroncoBaixo.WidthRequest &&
-		posVCabrito >=yMaxTronco)
+		if (posHCabrito >= Math.Abs(imgTroncoBaixo.TranslationX) - imgTroncoCima.WidthRequest && 
+			posHCabrito <= Math.Abs(imgTroncoBaixo.TranslationX) + imgTroncoCima.WidthRequest &&
+			posVCabrito >=yMaxTronco)
 		{
 			return true;
 		}
@@ -160,5 +172,5 @@ public partial class MainPage : ContentPage
 		{
 			return false;
 		}
-
 	}
+}

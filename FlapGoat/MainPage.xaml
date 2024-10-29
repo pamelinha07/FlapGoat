@@ -8,7 +8,7 @@
        <Grid>
 
        <Grid.GestureRecognizers>
-       <TapGestureRecognizer Tapped ="OnGridCliked"/>
+              <TapGestureRecognizer Tapped ="OnGridCliked"/>
        </Grid.GestureRecognizers>
 
               <Image Source="fundo.jpg"
@@ -18,7 +18,8 @@
                      HeightRequest="60"
                      WidthRequest="60"
                      HorizontalOptions="Center"
-                     x:Name="imgPersonagem"/>
+                     x:Name="imgPersonagem"
+                     BackgroundColor="black"/>
 
               <Image Source="tronco_cima.png"
                      VerticalOptions="Start"
@@ -26,6 +27,7 @@
                      HeightRequest="620"
                      WidthRequest="50"
                      x:Name="imgTroncoCima"
+                     BackgroundColor="blue"
                      />
 
               <Image Source="tronco_baixo.png"
@@ -33,7 +35,8 @@
                      HorizontalOptions="End"
                      HeightRequest="620"
                      WidthRequest="50"
-                     x:Name="imgTroncoBaixo"/>
+                     x:Name="imgTroncoBaixo"
+                     BackgroundColor="red"/>
 
               <Image Source="chao.jpg"
                      VerticalOptions="End"

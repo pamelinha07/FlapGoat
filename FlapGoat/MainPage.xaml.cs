@@ -159,7 +159,7 @@ public partial class MainPage : ContentPage
 
  	bool VerificaColisaoCanoBaixo()
 	{
-		var posHCabrito = (larguraJanela/2) - (imgPersonagem.WidthRequest/2);
+		var posHCabrito = larguraJanela - 60 - (imgPersonagem.WidthRequest/2);
 		var posVCabrito = (alturaJanela/2) + (imgPersonagem.HeightRequest/2) + imgPersonagem.TranslationY;
 		var yMaxTronco = imgTroncoCima.HeightRequest + imgTroncoCima.TranslationY + aberturaMinima;
 		if (posHCabrito >= Math.Abs(imgTroncoBaixo.TranslationX) - imgTroncoCima.WidthRequest && 

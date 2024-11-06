@@ -17,7 +17,8 @@
               <Image Source="pixel_art_cabra.png"
                      HeightRequest="60"
                      WidthRequest="60"
-                     HorizontalOptions="Center"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"
                      x:Name="imgPersonagem"
                      BackgroundColor="black"/>
 
